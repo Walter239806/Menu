@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import { boolean } from "webidl-conversions";
 
 const { Schema } = mongoose;
 const userSchema = new Schema(
