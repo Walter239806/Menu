@@ -4,7 +4,7 @@ import config from "../config/index.js";
 const checkToken = (req, res, next) => {
   const bearerHeader = req.headers.authorization;
   if (bearerHeader === undefined) {
-    return next({
+    return res.status(401).send({
       status: 498,
       code: 2001,
       message: `TOKEN indefinido desde ${req.protocol}://${req.get("host")}${
@@ -13,7 +13,6 @@ const checkToken = (req, res, next) => {
       userMessage: `Token indefinido`,
     });
   }
-
   const bearer = bearerHeader.split(" ");
   const token = bearer[1];
   jwt.verify(token, config.JWTSecret, (err, decoded) => {
